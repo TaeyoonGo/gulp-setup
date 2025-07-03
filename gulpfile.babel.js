@@ -10,6 +10,7 @@ import autoprefixer from 'gulp-autoprefixer';
 import miniCSS from 'gulp-csso'
 import bro from 'gulp-bro';
 import babelify from 'babelify'
+import ghpages from 'gulp-gh-pages';
 
 const sass = gulpSass(dartSass);
 
@@ -32,14 +33,16 @@ const routers = {
     },
     js : {
         watch : 'src/js/**/*.js',
-        src : "src/js/main.js",
+        src : "src/js/*",
         dest: "dist/js"
     }
 }
 
-const clean = () => deleteAsync(['dist'])
+const clean = () => deleteAsync(['dist',".publish"])
 
 const webServer = () => gulp.src(['dist']).pipe(ws({livereload: true,open:true,port:3030}))
+
+const gh = () => gulp.src("dist/**/*").pipe(ghpages());
 
 const watch = () => {
     gulp.watch(routers.html.watch,html)
@@ -69,7 +72,9 @@ const styles = () => gulp.src(routers.scss.src)
 
 const prepare = gulp.series([clean])
 const assets = gulp.series([html,img,styles,js])
-const postDev = gulp.parallel([webServer,watch])
+const live = gulp.parallel([webServer,watch])
 
 
-export const dev = gulp.series([prepare,assets,postDev])
+export const build = gulp.series([prepare,assets])
+export const dev = gulp.series([build,live])
+export const deploy = gulp.series([build,gh])
