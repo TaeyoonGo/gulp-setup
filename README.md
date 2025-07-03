@@ -30,6 +30,7 @@
 - gulp-csso : CSS Minify 처리 적용
 - gulp-bro : 모듈을 번들링 할때 사용
 - gulp-babelify : es6 -> es5로 변환 시 사용
+- gulp-gh-pages : 깃 페이지 배포 자동화  
 ### 업데이트 및  이슈 사항
 - 강의에서 퍼그를 사용 -> 조금 더 쉬운 HTML을 사용 템플릿을 위해 gulp-include로 대체
 - png,jpg 관련 이미지 파일이 랜더링이 안됨 (Gulp5 Issue)
@@ -41,5 +42,6 @@
 - SCSS 환경 세팅의 경우 세팅법이 최신 버전 변경
     -  @import 대신에 @forward 적용
 - autofix는 버전 세팅을 package.json에 적용
+- gulp-gh-pages 세팅 시 Personal access tokens과 Github 정보로 관리자 자격 증명을 진행
 ### 아쉬운 점
 - 테스트 관련은 적용 해 본적이 없어서 사용 하지는 않았는데 추후에 사용 필요 시 추가 예정
