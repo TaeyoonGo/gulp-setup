@@ -72,7 +72,7 @@ const styles = () => gulp.src(routers.scss.src)
 
 const prepare = gulp.series([clean])
 const assets = gulp.series([html,img,styles,js])
-const live = gulp.parallel([webServer,watch])
+const live = gulp.parallel([webServer,watch,clean])
 
 
 export const build = gulp.series([prepare,assets])
